@@ -1,3 +1,9 @@
+/* This program is for Monte Carlo integration of 
+   exp(-r*r)*r*r*sin(t) dr dp dt  r=0..4 p=0..2pi t=0..pi
+   and to compare the calculation times in case of 
+   CPU or GPU multi thread. */
+   
+
 #include <iostream>
 #include <fstream>
 #include <random>
