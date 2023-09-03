@@ -27,8 +27,8 @@ int main()
     xi[i][0] = 0.1 - 0.005*(i - 80);
   }        
   for(int i = 0; i < 100; i++) {
-    xa[i] = 2.0 * i - 100.0;                            
-    ya[i] = 300.0 * xi[i][0];  
+    xa[i] = 2.0*i - 100.0;                            
+    ya[i] = 300.0*xi[i][0];  
     myfile << t << " " << xa[i] << " " << ya[i] << std::endl;  
   }
 
@@ -38,13 +38,13 @@ int main()
   }
   while (t < 80.0){
     for(int i = 1; i < 100; i++) {
-      xi[i][2] = 2.0*xi[i][1] - xi[i][0] + ratio*(xi[i+1][1] + xi[i-1][1]-2.0*xi[i][1]);
+      xi[i][2] = 2.0*xi[i][1] - xi[i][0] + ratio*(xi[i+1][1] + xi[i-1][1] - 2.0*xi[i][1]);
 
     }
       
     for(int i = 1; i < 100; i++) {
       xa[i] = 2.0*i - 100.0;                  
-      ya[i] = 300.0 * xi[i][2];
+      ya[i] = 300.0*xi[i][2];
       myfile << t << " " << xa[i] << " " << ya[i] << std::endl; 
     }
     
