@@ -7,6 +7,8 @@ The implementation of the GPU - multi thread case is made by using the CUDA tool
 
 The limits of integration can be easily changed in the code, the default is from -4.0 to 4.0 for all of the three variables. With the default setting the result should be: 5.56833.
 
-I made some time measurements on the different solutions. The CPU was an Intel(R) Xeon(R) CPU @ 2.30GHz and graphic card was an NVIDIA Tesla T4 16GB.
+Measurements has been made on the different solutions, with an Intel(R) Xeon(R) CPU @ 2.30GHz CPU and NVIDIA Tesla T4 16GB graphics card.
 
-![Alt text](MC_measurement.png?raw=true "Title")
+![Alt text](MC_measurement.png?raw=true "Running times")
+
+![Alt text](MC_measurement_logscale.png?raw=true "Running times on log scale")
