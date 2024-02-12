@@ -1,4 +1,3 @@
-%%writefile MC.cu
 /* This program is for Monte Carlo integration of
    exp(-(x*x+y*y+z*z)) dx dy dz  x=x1..x2 y=y1..y2 z=z1..z2
    and to compare the calculation times in case of
@@ -74,34 +73,19 @@ float MonteCarlo_CPUMultiThread(const int& N, const float &x1, const float &x2, 
     return integral;
 }
 
-__global__ void calculate(float* dst, const float &x1, const float &x2, const float &y1, const float &y2, const float &z1, const float &z2)
+__global__ void calculate(float* dst, float x1, float x2, float y1, float y2, float z1, float z2)
 {
-    int id = blockDim.x*blockIdx.x + threadIdx.x;
+    int id = blockDim.x * blockIdx.x + threadIdx.x;
 
     curandState state;
     curand_init((unsigned long long)clock() + id, 0, 0, &state);
 
     float px = curand_uniform(&state) * (x2 - x1) + x1;
-    float py = curand_uniform(&state) * (y2 - y1) + y1;
-    float pz = curand_uniform(&state) * (z2 - z1) + z1;
+    float py = curand_uniform(&state) * (x2 - x1) + x1;
+    float pz = curand_uniform(&state) * (x2 - x1) + x1;
 
     if (r2(px, py, pz) < 16.0) {
       dst[id] = (exp(-r2(px, py, pz)));
-    }
-}
-
-void ZeroInitialization(const int& N, float* A) {
-    for (int i = 0; i < N; i++) {
-        A[i] = 0.0;
-    }
-}
-
-void RandomInitialization(const int& N, float* A) {
-    std::random_device rd{};
-    std::mt19937 gen(rd());
-    std::uniform_real_distribution<float> distribution(-4.0, 4.0);
-    for (int i = 0; i < N; i++) {
-        A[i] = distribution(gen);
     }
 }
 
@@ -141,7 +125,7 @@ float MonteCarlo_GPUMultiThread(const int& N, const float &x1, const float &x2, 
     for(int i = 0; i < N; i++) {
       sum += h_dst[i];
     }
-    float integral = 8.0 * 8.0 * 8.0 * sum / N;
+    float integral = (x2 - x1) * (y2 - y1) * (z2 - z1) * sum / N;
 
     cudaFree(d_dst);
     free(h_dst);
@@ -167,6 +151,7 @@ int main() {
             std::cout << "N = " << N << std::endl;
             auto time0 = std::chrono::high_resolution_clock::now();
             MonteCarlo_SingleThread(N, -4.0, 4.0, -4.0, 4.0, -4.0, 4.0);
+
             auto time1 = std::chrono::high_resolution_clock::now();
 
             auto time2 = std::chrono::high_resolution_clock::now();
@@ -199,7 +184,7 @@ int main() {
             result = MonteCarlo_CPUMultiThread(N, -4.0, 4.0, -4.0, 4.0, -4.0, 4.0);
             break;
         case 2:
-            result = MonteCarlo_GPUMultiThread(N,-4.0, 4.0, -4.0, 4.0, -4.0, 4.0);
+            result = MonteCarlo_GPUMultiThread(N, -4.0, 4.0, -4.0, 4.0, -4.0, 4.0);
             break;
     }
 
