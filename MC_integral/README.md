@@ -4,7 +4,7 @@ The calculation can be made on CPU - one thread, CPU - multi thread or GPU - mul
 
 The limits of integration can be easily changed in the code, the default is from -4.0 to 4.0 for all of the three variables. With the default setting the result should be: 5.56833.
 
-Measurements has been made on the different solutions, with an Intel(R) Xeon(R) CPU @ 2.30GHz CPU and NVIDIA Tesla T4 16GB graphics card.
+Measurements has been made on the different solutions, with an Intel(R) Xeon(R) CPU @ 2.30GHz CPU and NVIDIA Tesla T4 16GB graphics card. The number data points used for the MC integration are on the x axis, and the running times on the y.
 
 ![Alt text](MC_measurement.png?raw=true "Running times")
 
