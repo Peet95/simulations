@@ -87,10 +87,12 @@ The $B_n$ coefficients can be determined from the first initial condition:
 y (x,0) = \sum_{n=1}^{\infty} B_n \sin{k_n x} = f(x)
 ```
 
-Using the time stepping, I calculated the displacement of the string at various locations at different time points.
-I took the wave propagation velocity to be $c = 0.25$ everywhere, and the distance between the two fixed ends of the string to be one unit length.
+
 
 # Simulation with different initial conditions, with and without damping
+
+Using the time stepping mentioned before, I calculated the displacement of the string at various locations at different time points.
+I took the wave propagation velocity to be $c = 0.25$ everywhere, and the distance between the two fixed ends of the string to be one unit length.
 
 First, I ran the simulation with the following initial condition:
 ```math
