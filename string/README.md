@@ -128,9 +128,7 @@ The result of this can be seen here:
 ![2_new](https://github.com/Peet95/projects/assets/128177702/34c41990-7fa7-4ba8-b5cf-c7b8445d2c46)
 
 With damping:
-
-![2_damped_new](https://github.com/Peet95/projects/assets/128177702/d02b076b-169b-4fd4-8da6-066d555ea2ca)
-
+![string_plot](https://github.com/Peet95/projects/assets/128177702/4a206a45-9e04-480a-b121-f46db2093785)
 
 # Simulation with different initial conditions, numerically and analytically
 
