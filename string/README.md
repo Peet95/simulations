@@ -30,10 +30,10 @@ We can numerically solve the equation by discretizing the problem. At any given 
 
 Substituting these back into the wave equation:
 ```math
- y(t+dt,x) = ( c^2  dt^2 / dx^2 )  y(t,  x+dx)  +  2  ( 1 - C^2  dt^2 / dx^2 )  y(t,   x   )  +\\+  (     c^2  dt^2 / dx^2 )  y(t,   x-dx)   -  y(t-dt,x   ).
+ y(t+dt,x) = ( c^2  dt^2 / dx^2 )  y(t,  x+dx)  +  2  ( 1 - c^2  dt^2 / dx^2 )  y(t,   x   )  +\\+  (     c^2  dt^2 / dx^2 )  y(t,   x-dx)   -  y(t-dt,x   ).
 ```
 ```math
- y(t+dt,x) = ( c^2  dt^2 / dx^2 )  y(t,  x+dx)  +  2  ( 1 - C^2  dt^2 / dx^2 )  y(t,   x   )  +\\+ (     c^2  dt^2 / dx^2 )  y(t,   x-dx)   -  y(t-dt,x   ) - \frac{ A}{dt} ( y(t,   x   ) - y(t-dt,x   )).
+ y(t+dt,x) = ( c^2  dt^2 / dx^2 )  y(t,  x+dx)  +  2  ( 1 - c^2  dt^2 / dx^2 )  y(t,   x   )  +\\+ (     c^2  dt^2 / dx^2 )  y(t,   x-dx)   -  y(t-dt,x   ) - \frac{ A}{dt} ( y(t,   x   ) - y(t-dt,x   )).
 ```
 However, we cannot compute the value after the first time step in this way because it requires two previous results, but we only have the initial condition. For the first step, we can use the central difference formula:
 
@@ -48,7 +48,7 @@ y(t-dt,x) = y(t+dt,x) - 2  dt  \frac{ dy}{dt(t,x)}
 
 Replacing the $y(t-dt,x)$ value in the equation:
 ```math
-  y(t+d,x) =   1/2  (C^2  dt^2 / dx^2 )  y(t,   x+dx) +   ( 1 - C^2  dt^2 / dx^2 )  y(t,   x   ) +\\+ 1/2  (     C^2  dt^2 / dx^2 )  y(t,   x-dx) +  dt \frac{dy}{dt(t,   x   )}.
+  y(t+d,x) =   1/2  (c^2  dt^2 / dx^2 )  y(t,   x+dx) +   ( 1 - c^2  dt^2 / dx^2 )  y(t,   x   ) +\\+ 1/2  (     c^2  dt^2 / dx^2 )  y(t,   x-dx) +  dt \frac{dy}{dt(t,   x   )}.
 ```
 The first time step can thus be performed in this way.
 
@@ -137,7 +137,7 @@ Another soulution with different initial condition and damping:
 
 # Simulation with different initial conditions, numerically and analytically
 
-By substituting the (\ref{eq:iv1}) initial condition into the (\ref{sth}) equation, we obtain the following result for the $B_n$ coefficients:
+By substituting theinitial condition into the equation, we obtain the following result for the $B_n$ coefficients:
 
 ```math
 B_n = 2 \int\limits_0^{0.8} 1.25 x \sin{(n \pi x)} dx + 2 \int\limits_{0.8}^1 (5 - 5x) \sin{(n \pi x)} dx = \frac{12.5 \sin{(0.8 n \pi)} - 10  \sin {(n \pi)}} {n^2 \pi^2}.
