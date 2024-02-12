@@ -130,6 +130,11 @@ The result of this can be seen here:
 With damping:
 ![string_plot](https://github.com/Peet95/projects/assets/128177702/4a206a45-9e04-480a-b121-f46db2093785)
 
+
+Another soulution with different initial condition and damping:
+![string_plot_2](https://github.com/Peet95/projects/assets/128177702/6853ad00-ccfd-4cd4-88b6-6ddbff521485)
+
+
 # Simulation with different initial conditions, numerically and analytically
 
 By substituting the (\ref{eq:iv1}) initial condition into the (\ref{sth}) equation, we obtain the following result for the $B_n$ coefficients:
