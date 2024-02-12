@@ -43,10 +43,7 @@ In this case, the equations of motion are obtained from the following modified E
 ```math
 \frac{d}{dt} \frac{\partial L}{\partial \dot{\phi}_{1,2}} = \frac{\partial L}{\partial \phi_{1,2}} -  \frac{\partial R}{\partial \dot{ \phi}_{1,2}}.
 ```
-Thus:
-```math
-\frac{d}{dt} \frac{\partial L}{\partial \dot{\phi}_{1,2}} = \frac{\partial L}{\partial \phi_{1,2}}.
-```
+
 From this, the system of differential equations to be solved is:
 ```math
 \frac{\partial \phi_1}{\partial t} = \omega_1
