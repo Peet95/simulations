@@ -9,4 +9,4 @@ The limits of integration can be easily changed in the code, the default is from
 
 I made some time measurements on the different solutions. The CPU was an Intel(R) Xeon(R) CPU @ 2.30GHz and graphic card was an NVIDIA Tesla T4 16GB.
 
-![Alt text](relative%20path/to/img.jpg?raw=true "Title")
+![Alt text](MC_measurement.png?raw=true "Title")
