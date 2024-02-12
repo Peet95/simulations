@@ -36,7 +36,7 @@ The analytical solution of this system of differential equations is not known, s
 
 If we want to take into account the effect of the medium resistance, we can calculate damping proportional to speed using a simple model. For this, we need to supplement the Lagrange formalism used in the previous chapter with the Rayleigh dissipation function:
 ```math
-R = \frac{1}{2} \eta (v_1 ^2 + v_2 ^2) = \frac{1}{2} \eta (2 l_1^2 \dot{\phi}_1^2 + l_2^2
+R = \frac{1}{2} \eta (v_1 ^2 + v_2 ^2) = \frac{1}{2} \eta (2 l_1^2 \dot{\phi}_1^2 + l_2^2 \dot{\phi}_2^2 + 2 l_1 l_2 \dot{\phi}_1 \dot{\phi}_2 \cos(\phi_1-\phi_2))
 ```
 
 In this case, the equations of motion are obtained from the following modified Euler-Lagrange equation:
