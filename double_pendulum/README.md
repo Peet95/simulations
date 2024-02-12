@@ -55,9 +55,12 @@ From this, the system of differential equations to be solved is:
 \frac{\partial \phi_2}{\partial t} = \omega_2
 ```
 ```math
-\frac{\partial \omega_1}{\partial t} = \frac{-g(M+m_1)\sin(\phi_1)-m_2 g \sin(\phi_1 -2 \phi_2)-2 \sin(\phi_1 - \phi2) m_2 (\omega_1^2 l_1 \cos(\phi_1-\phi_2) + \omega_2^2 l_2) }{l_1 (M+m_1-m_2 \cos(2 \phi_1 - 2 \phi_2))} - \\ \\ - \eta (2 l_1^2 \dot{\phi}_1 - l_1 l_2 \dot{\phi}_2 \cos(\phi_1 - \phi_2))```
+\frac{\partial \omega_1}{\partial t} = \frac{-g(M+m_1)\sin(\phi_1)-m_2 g \sin(\phi_1 -2 \phi_2)-2 \sin(\phi_1 - \phi2) m_2 (\omega_1^2 l_1 \cos(\phi_1-\phi_2) + \omega_2^2 l_2) }{l_1 (M+m_1-m_2 \cos(2 \phi_1 - 2 \phi_2))} - \\ \\ - \eta (2 l_1^2 \dot{\phi}_1 - l_1 l_2 \dot{\phi}_2 \cos(\phi_1 - \phi_2))
+```
 ```math
-\frac{\partial \omega_2}{\partial t} = \frac{2 \sin(\phi_1 - \phi_2) (M \phi_1^2 l_1 +g M \cos(\phi_1)+ \phi_2^2 l_2 m_2 \cos(\phi_1 - \phi_2)) }{l_2 (M+m_1-m_2 \cos(2 \phi_1 - 2 \phi_2))} - \eta (l_2^2 \dot{\phi}_2 - l_1 l_2 \dot{\phi}_1 \cos(\phi_1 - \phi_2)).```
+\frac{\partial \omega_2}{\partial t} = \frac{2 \sin(\phi_1 - \phi_2) (M \phi_1^2 l_1 +g M \cos(\phi_1)+ \phi_2^2 l_2 m_2 \cos(\phi_1 - \phi_2)) }{l_2 (M+m_1-m_2 \cos(2 \phi_1 - 2 \phi_2))} - \eta (l_2^2 \dot{\phi}_2 - l_1 l_2 \dot{\phi}_1 \cos(\phi_1 - \phi_2)).
+```
 
+A short video of the running program:
 
 https://github.com/Peet95/projects/assets/128177702/1444fe80-5505-4148-a911-9061aebf0242
