@@ -23,7 +23,7 @@ I have been dealing with its two-dimensional form:
 \frac{\partial T(x,y,t)}{\partial t} = \frac{\kappa}{C \rho} \left( \frac{\partial^2 T(x,y,t)}{\partial x^2} + \frac{\partial^2 T(x,y,t)}{\partial y^2} \right).
 ```
 # Explicit Euler method
-![Euler](https://github.com/Peet95/projects/assets/128177702/34d4a128-c237-462e-9b8d-c29588dc99f2)
+
 
 I conducted the simulation using the finite element method, so I discretized both space and time. In the equations, I indexed the examined time points with k, and the coordinates of the points in space with i and j indices for the x and y directions, respectively. The distance between spatial points is denoted by $\Delta x$ and $\Delta y$, and the time step is $\Delta t$.
 To obtain the recursion formula used in the simulation, let's first write the first-order Taylor series expansion of $T_{i,j}^{n-1}$ around n:
@@ -55,11 +55,12 @@ T_{i,j}^{n} = T_{i,j}^{n-1} + \alpha \frac{\Delta t}{h^2} (T_{i+1,j}^{n-1} + T_{
 ```
 where $\alpha = \frac{\kappa}{C \rho}$.
 
+ <img align="right" src="Euler.png">
+ 
 I simulated the Dirichlet boundary condition on the bottom side of the rectangle by restoring the linear profile after each time step. For considering the Neumann boundary condition on the right side, I introduced a so-called ghost grid on that side. We take it into account during the calculation, but we do not display it.
 In this case, the boundary condition is as follows:
 ```math
 \frac{\partial T}{\partial x} \Big\vert_{0,j}^k = Q.
-(\#eq:neumann1)
 ```
 To assess how closely our simulation approximates the analytical solution and to understand its efficiency, we can use the Neumann stability analysis method. This method is based on the assumption that the eigenmodes of the differential equation can be written in the following form:
 ```math 
