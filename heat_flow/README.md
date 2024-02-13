@@ -97,6 +97,8 @@ Based on these, $\eta = 0.00256$, which is evidently within the stable region.
 
 With these settings the result:
 
+![Alt Text](heat_flow.gif)
+
 
 
 
