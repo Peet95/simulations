@@ -4,6 +4,12 @@ This C++ program is to  to solve the time-dependent heat conduction equation for
   - the thermal insulation along the other two edges is perfect.
 The initial condition is linear in both Cartesian coordinates along the sheet, which also satisfies the boundary condition along the lower edge.
 
+The program draws the simulation in real-time using the Gnuplot graphical tool. 
+
+
+
+
+Figures \ref{first} and \ref{second} show the outcome of a simulation at different time points.
 # The heat conduction equation
 The observable fact in nature that heat flows from warmer areas to cooler ones can be expressed with the following mathematical equation:
 ```math
@@ -80,6 +86,18 @@ So that $|\xi (k)| < 1$ holds for all $k$:
 \eta = \frac{\kappa \Delta t}{C \rho \Delta x^2} < \frac{1}{2}. \tag*{(16)}
 ```
 Based on this equation, choosing smaller time steps $\Delta t$ leads to a more stable solution. However, if we decrease the spatial step size $\Delta x$ without quadratically adjusting the time step in proportion, the stability will decrease. We could perform this calculation considering only $\Delta x$ because in the simulation, we use the same step size in both spatial directions. This is not ideal for highly elongated rectangles, but it greatly simplifies the computation and the simulation.
+
+# Example run
+
+An example of the program settings:
+h = 0.0625
+dt = 0.00001
+$\alpha$ = 1
+Based on these, $\eta = 0.00256$, which is evidently within the stable region.
+
+With these settings the result:
+
+
 
 
 
