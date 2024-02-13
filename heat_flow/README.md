@@ -23,6 +23,7 @@ I have been dealing with its two-dimensional form:
 \frac{\partial T(x,y,t)}{\partial t} = \frac{\kappa}{C \rho} \left( \frac{\partial^2 T(x,y,t)}{\partial x^2} + \frac{\partial^2 T(x,y,t)}{\partial y^2} \right).
 ```
 # Explicit Euler method
+![Euler](https://github.com/Peet95/projects/assets/128177702/34d4a128-c237-462e-9b8d-c29588dc99f2)
 
 I conducted the simulation using the finite element method, so I discretized both space and time. In the equations, I indexed the examined time points with k, and the coordinates of the points in space with i and j indices for the x and y directions, respectively. The distance between spatial points is denoted by $\Delta x$ and $\Delta y$, and the time step is $\Delta t$.
 To obtain the recursion formula used in the simulation, let's first write the first-order Taylor series expansion of $T_{i,j}^{n-1}$ around n:
@@ -53,3 +54,32 @@ Expressing the single term taken at n:
 T_{i,j}^{n} = T_{i,j}^{n-1} + \alpha \frac{\Delta t}{h^2} (T_{i+1,j}^{n-1} + T_{i-1,j}^{n-1} - 4 T_{i,j}^{n-1} + T_{i,j+1}^{n-1} + T_{i,j-1}^{n-1} ),
 ```
 where $\alpha = \frac{\kappa}{C \rho}$.
+
+I simulated the Dirichlet boundary condition on the bottom side of the rectangle by restoring the linear profile after each time step. For considering the Neumann boundary condition on the right side, I introduced a so-called ghost grid on that side. We take it into account during the calculation, but we do not display it.
+In this case, the boundary condition is as follows:
+```math
+\frac{\partial T}{\partial x} \Big\vert_{0,j}^k = Q.
+(\#eq:neumann1)
+```
+To assess how closely our simulation approximates the analytical solution and to understand its efficiency, we can use the Neumann stability analysis method. This method is based on the assumption that the eigenmodes of the differential equation can be written in the following form:
+```math 
+T_{m}^j = \xi(k)^j e^{ikm \Delta x},
+```
+where $x=m \Delta x$ and $t=j \Delta t$. $\xi$ is the complex function of the wave number $k$. If the general solution of the differential equation can be expressed in terms of these eigenmodes, then the solution is stable if the eigenmodes are stable. An eigenmode is stable if the amplitude does not increase over time, that is, $|\xi(k)| < 1$ holds for all $k$.
+To perform the stability analysis, we need to substitute the expression from the last equation into the previous equation for expressing $T n
+i,j $:
+```math
+\xi^{j+1}e^{ikm \Delta x} = \xi^j e^{ikm \Delta x} + \eta \left( \xi^j e^{ik(m+1)\Delta x} + \xi^j e^{ik(m-1) \Delta x} - 2 \xi ^j e^{ikm \Delta x} \right).
+```
+From this, utilizing the Euler formula:
+```math
+\xi (k) = 1+2 \eta \left( \cos{k \Delta x} - 1 \right).
+```
+So that $\abs{\xi (k)} < 1$ holds for all $k$:
+```math
+\eta = \frac{\kappa \Delta t}{C \rho \Delta x^2} < \frac{1}{2}.
+```
+Based on this equation, choosing smaller time steps $\Delta t$ leads to a more stable solution. However, if we decrease the spatial step size $\Delta x$ without quadratically adjusting the time step in proportion, the stability will decrease. We could perform this calculation considering only $\Delta x$ because in the simulation, we use the same step size in both spatial directions. This is not ideal for highly elongated rectangles, but it greatly simplifies the computation and the simulation.
+
+
+
