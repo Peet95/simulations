@@ -75,7 +75,7 @@ From this, utilizing the Euler formula:
 ```math
 \xi (k) = 1+2 \eta \left( \cos{k \Delta x} - 1 \right).
 ```
-So that $\abs{\xi (k)} < 1$ holds for all $k$:
+So that $|\xi (k)| < 1$ holds for all $k$:
 ```math
 \eta = \frac{\kappa \Delta t}{C \rho \Delta x^2} < \frac{1}{2}.
 ```
