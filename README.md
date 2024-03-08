@@ -1,1 +1,1 @@
-Collection of simulations written in C++.
+Collection of programs written in C++.
