@@ -9,3 +9,12 @@ The program is impelemented also in basic C++ (main.cpp) and using CUDA toolkit 
 The image I tested on:
 
  <img align="center" src="office.png">
+
+ The small image of the owl the program is searching for:
+ 
+ <img src="owl.png">
+
+ The result png image what the program creates:
+
+ <img align="center" src="office_out.png">
+ 
