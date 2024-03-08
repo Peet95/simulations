@@ -158,7 +158,7 @@ int main() {
         }
     }
 
-    stbi_write_png("out.png" , width, height, 3, rgb_image, width*3);
+    stbi_write_png("office_out.png" , width, height, 3, rgb_image, width*3);
 
     stbi_image_free(rgb_image);
     stbi_image_free(rgb_image_small);
