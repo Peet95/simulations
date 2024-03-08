@@ -33,7 +33,6 @@ float calcCorr(uint8_t* X, uint8_t* Y, int X_width, int X_height, int Y_width, i
     float corr = (sum_XY * X_width*X_height - (sum_X * sum_Y))
                   / std::sqrt((squareSum_X * X_width*X_height - (sum_X * sum_X))
                       * (squareSum_Y * X_width*X_height - (sum_Y * sum_Y)));
-    //std::cout << "corr: " << corr << std::endl;
     return corr;
 }
 
@@ -59,7 +58,7 @@ int main() {
             }
         }
     }
-    std::cout << "\ncorr: " << corr << std::endl;
+    std::cout << "corr: " << corr << std::endl;
     std::cout << "x_place: " << x_place << std::endl;
     std::cout << "y_place: " << y_place << std::endl;
 
