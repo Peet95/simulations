@@ -39,7 +39,7 @@ __global__ void calcCorr(float* result, uint8_t* X, uint8_t* Y, int X_width, int
     result[id] = (sum_XY * X_width*X_height - (sum_X * sum_Y))
                   / std::sqrt((squareSum_X * X_width*X_height - (sum_X * sum_X))
                       * (squareSum_Y * X_width*X_height - (sum_Y * sum_Y)));
-                      
+
 }
 
 int main() {
@@ -51,7 +51,7 @@ int main() {
 
     int N = 3*width*height;
     int sz = N * sizeof(float);
-  
+
     // Host vector
     float* h_dst = (float*)malloc(sz);
     uint8_t* h_X = (uint8_t*)malloc(3*width_small*height_small*sizeof(uint8_t));
@@ -59,7 +59,7 @@ int main() {
     // Device vector
     float* d_dst = NULL;
     uint8_t* d_X = NULL;
-    uint8_t* d_Y = NULL;    
+    uint8_t* d_Y = NULL;
     // Allocate memory for the vector on GPU
     cudaMalloc((void**)&d_dst, sz);
     cudaMalloc((void**)&d_X, 3*width_small*height_small*sizeof(uint8_t));
@@ -91,13 +91,13 @@ int main() {
 
     float corr{0.0};
     for (int i =0 ; i < N; i++) {
-      float corr_temp = h_dst[i];
-      if(corr_temp > corr) {
-        corr = corr_temp;
-        x_place = i % (3*width);
-        y_place = i / (3*width);
-      } 
-  }
+        float corr_temp = h_dst[i];
+        if(corr_temp > corr) {
+            corr = corr_temp;
+            x_place = i % (3*width);
+            y_place = i / (3*width);
+        }
+    }
     std::cout << "\ncorr: " << corr << std::endl;
     std::cout << "x_place: " << x_place / 3 << std::endl;
     std::cout << "y_place: " << y_place << std::endl;
@@ -107,58 +107,57 @@ int main() {
 
     // Draw square on around the target
     for (int width_offset = 0; width_offset < 3*width_small; width_offset+=3) {
-        for (int height_offset = 0; height_offset < height_small + 3; height_offset++) {
-            // Top line
-            rgb_image[y_place * 3*width + x_place + width_offset + 0] = 255;
-            rgb_image[y_place * 3*width + x_place + width_offset + 1] = 0;
-            rgb_image[y_place * 3*width + x_place + width_offset + 2] = 0;
+        // Top line
+        rgb_image[y_place * 3*width + x_place + width_offset + 0] = 255;
+        rgb_image[y_place * 3*width + x_place + width_offset + 1] = 0;
+        rgb_image[y_place * 3*width + x_place + width_offset + 2] = 0;
 
-            rgb_image[(y_place - 1) * 3*width + x_place + width_offset + 0] = 255;
-            rgb_image[(y_place - 1) * 3*width + x_place + width_offset + 1] = 0;
-            rgb_image[(y_place - 1) * 3*width + x_place + width_offset + 2] = 0;
+        rgb_image[(y_place - 1) * 3*width + x_place + width_offset + 0] = 255;
+        rgb_image[(y_place - 1) * 3*width + x_place + width_offset + 1] = 0;
+        rgb_image[(y_place - 1) * 3*width + x_place + width_offset + 2] = 0;
 
-            rgb_image[(y_place + 1) * 3*width + x_place + width_offset + 0] = 255;
-            rgb_image[(y_place + 1) * 3*width + x_place + width_offset + 1] = 0;
-            rgb_image[(y_place + 1) * 3*width + x_place + width_offset + 2] = 0;     
+        rgb_image[(y_place + 1) * 3*width + x_place + width_offset + 0] = 255;
+        rgb_image[(y_place + 1) * 3*width + x_place + width_offset + 1] = 0;
+        rgb_image[(y_place + 1) * 3*width + x_place + width_offset + 2] = 0;
 
-            // Bottom line
-            rgb_image[(y_place + height_small) * 3*width + x_place + width_offset + 0] = 255;
-            rgb_image[(y_place + height_small) * 3*width + x_place + width_offset + 1] = 0;
-            rgb_image[(y_place + height_small) * 3*width + x_place + width_offset + 2] = 0;
+        // Bottom line
+        rgb_image[(y_place + height_small) * 3*width + x_place + width_offset + 0] = 255;
+        rgb_image[(y_place + height_small) * 3*width + x_place + width_offset + 1] = 0;
+        rgb_image[(y_place + height_small) * 3*width + x_place + width_offset + 2] = 0;
 
-            rgb_image[((y_place + height_small) - 1) * 3*width + x_place + width_offset + 0] = 255;
-            rgb_image[((y_place + height_small) - 1) * 3*width + x_place + width_offset + 1] = 0;
-            rgb_image[((y_place + height_small) - 1) * 3*width + x_place + width_offset + 2] = 0;
+        rgb_image[((y_place + height_small) - 1) * 3*width + x_place + width_offset + 0] = 255;
+        rgb_image[((y_place + height_small) - 1) * 3*width + x_place + width_offset + 1] = 0;
+        rgb_image[((y_place + height_small) - 1) * 3*width + x_place + width_offset + 2] = 0;
 
-            rgb_image[((y_place + height_small) + 1) * 3*width + x_place + width_offset + 0] = 255;
-            rgb_image[((y_place + height_small) + 1) * 3*width + x_place + width_offset + 1] = 0;
-            rgb_image[((y_place + height_small) + 1) * 3*width + x_place + width_offset + 2] = 0;  
+        rgb_image[((y_place + height_small) + 1) * 3*width + x_place + width_offset + 0] = 255;
+        rgb_image[((y_place + height_small) + 1) * 3*width + x_place + width_offset + 1] = 0;
+        rgb_image[((y_place + height_small) + 1) * 3*width + x_place + width_offset + 2] = 0;
+    }
+    for (int height_offset = 0; height_offset < height_small + 3; height_offset++) {
+        // Left line
+        rgb_image[(y_place + height_offset - 1) * 3*width + x_place - 3] = 255;
+        rgb_image[(y_place + height_offset - 1) * 3*width + x_place - 2] = 0;
+        rgb_image[(y_place + height_offset - 1) * 3*width + x_place - 1] = 0;
+        rgb_image[(y_place + height_offset - 1) * 3*width + x_place] = 255;
+        rgb_image[(y_place + height_offset - 1) * 3*width + x_place + 1] = 0;
+        rgb_image[(y_place + height_offset - 1) * 3*width + x_place + 2] = 0;
+        rgb_image[(y_place + height_offset - 1) * 3*width + x_place + 3] = 255;
+        rgb_image[(y_place + height_offset - 1) * 3*width + x_place + 4] = 0;
+        rgb_image[(y_place + height_offset - 1) * 3*width + x_place + 5] = 0;
 
-            // Left line
-            rgb_image[(y_place + height_offset - 1) * 3*width + x_place - 3] = 255;
-            rgb_image[(y_place + height_offset - 1) * 3*width + x_place - 2] = 0;
-            rgb_image[(y_place + height_offset - 1) * 3*width + x_place - 1] = 0;
-            rgb_image[(y_place + height_offset - 1) * 3*width + x_place] = 255;
-            rgb_image[(y_place + height_offset - 1) * 3*width + x_place + 1] = 0;
-            rgb_image[(y_place + height_offset - 1) * 3*width + x_place + 2] = 0;
-            rgb_image[(y_place + height_offset - 1) * 3*width + x_place + 3] = 255;
-            rgb_image[(y_place + height_offset - 1) * 3*width + x_place + 4] = 0;
-            rgb_image[(y_place + height_offset - 1) * 3*width + x_place + 5] = 0;            
-
-            // Right line
-            rgb_image[(y_place + height_offset - 1) * 3*width + x_place + 3*width_small - 3] = 255;
-            rgb_image[(y_place + height_offset - 1) * 3*width + x_place + 3*width_small - 2] = 0;
-            rgb_image[(y_place + height_offset - 1) * 3*width + x_place + 3*width_small - 1] = 0;
-            rgb_image[(y_place + height_offset - 1) * 3*width + x_place + 3*width_small] = 255;
-            rgb_image[(y_place + height_offset - 1) * 3*width + x_place + 3*width_small + 1] = 0;
-            rgb_image[(y_place + height_offset - 1) * 3*width + x_place + 3*width_small + 2] = 0;
-            rgb_image[(y_place + height_offset - 1) * 3*width + x_place + 3*width_small + 3] = 255;
-            rgb_image[(y_place + height_offset - 1) * 3*width + x_place + 3*width_small + 4] = 0;
-            rgb_image[(y_place + height_offset - 1) * 3*width + x_place + 3*width_small + 5] = 0;                                             
-        }
+        // Right line
+        rgb_image[(y_place + height_offset - 1) * 3*width + x_place + 3*width_small - 3] = 255;
+        rgb_image[(y_place + height_offset - 1) * 3*width + x_place + 3*width_small - 2] = 0;
+        rgb_image[(y_place + height_offset - 1) * 3*width + x_place + 3*width_small - 1] = 0;
+        rgb_image[(y_place + height_offset - 1) * 3*width + x_place + 3*width_small] = 255;
+        rgb_image[(y_place + height_offset - 1) * 3*width + x_place + 3*width_small + 1] = 0;
+        rgb_image[(y_place + height_offset - 1) * 3*width + x_place + 3*width_small + 2] = 0;
+        rgb_image[(y_place + height_offset - 1) * 3*width + x_place + 3*width_small + 3] = 255;
+        rgb_image[(y_place + height_offset - 1) * 3*width + x_place + 3*width_small + 4] = 0;
+        rgb_image[(y_place + height_offset - 1) * 3*width + x_place + 3*width_small + 5] = 0;
     }
 
-    stbi_write_png("office_out.png" , width, height, 3, rgb_image, width*3);
+    stbi_write_png("out.png" , width, height, 3, rgb_image, width*3);
 
     stbi_image_free(rgb_image);
     stbi_image_free(rgb_image_small);

@@ -63,55 +63,54 @@ int main() {
     std::cout << "y_place: " << y_place << std::endl;
 
     for (int width_offset = 0; width_offset < 3*width_small; width_offset+=3) {
-        for (int height_offset = 0; height_offset < height_small + 3; height_offset++) {
-            // Top line
-            rgb_image[y_place * 3*width + x_place + width_offset + 0] = 255;
-            rgb_image[y_place * 3*width + x_place + width_offset + 1] = 0;
-            rgb_image[y_place * 3*width + x_place + width_offset + 2] = 0;
+        // Top line
+        rgb_image[y_place * 3*width + x_place + width_offset + 0] = 255;
+        rgb_image[y_place * 3*width + x_place + width_offset + 1] = 0;
+        rgb_image[y_place * 3*width + x_place + width_offset + 2] = 0;
 
-            rgb_image[(y_place - 1) * 3*width + x_place + width_offset + 0] = 255;
-            rgb_image[(y_place - 1) * 3*width + x_place + width_offset + 1] = 0;
-            rgb_image[(y_place - 1) * 3*width + x_place + width_offset + 2] = 0;
+        rgb_image[(y_place - 1) * 3*width + x_place + width_offset + 0] = 255;
+        rgb_image[(y_place - 1) * 3*width + x_place + width_offset + 1] = 0;
+        rgb_image[(y_place - 1) * 3*width + x_place + width_offset + 2] = 0;
 
-            rgb_image[(y_place + 1) * 3*width + x_place + width_offset + 0] = 255;
-            rgb_image[(y_place + 1) * 3*width + x_place + width_offset + 1] = 0;
-            rgb_image[(y_place + 1) * 3*width + x_place + width_offset + 2] = 0;     
+        rgb_image[(y_place + 1) * 3*width + x_place + width_offset + 0] = 255;
+        rgb_image[(y_place + 1) * 3*width + x_place + width_offset + 1] = 0;
+        rgb_image[(y_place + 1) * 3*width + x_place + width_offset + 2] = 0;     
 
-            // Bottom line
-            rgb_image[(y_place + height_small) * 3*width + x_place + width_offset + 0] = 255;
-            rgb_image[(y_place + height_small) * 3*width + x_place + width_offset + 1] = 0;
-            rgb_image[(y_place + height_small) * 3*width + x_place + width_offset + 2] = 0;
+        // Bottom line
+        rgb_image[(y_place + height_small) * 3*width + x_place + width_offset + 0] = 255;
+        rgb_image[(y_place + height_small) * 3*width + x_place + width_offset + 1] = 0;
+        rgb_image[(y_place + height_small) * 3*width + x_place + width_offset + 2] = 0;
 
-            rgb_image[((y_place + height_small) - 1) * 3*width + x_place + width_offset + 0] = 255;
-            rgb_image[((y_place + height_small) - 1) * 3*width + x_place + width_offset + 1] = 0;
-            rgb_image[((y_place + height_small) - 1) * 3*width + x_place + width_offset + 2] = 0;
+        rgb_image[((y_place + height_small) - 1) * 3*width + x_place + width_offset + 0] = 255;
+        rgb_image[((y_place + height_small) - 1) * 3*width + x_place + width_offset + 1] = 0;
+        rgb_image[((y_place + height_small) - 1) * 3*width + x_place + width_offset + 2] = 0;
 
-            rgb_image[((y_place + height_small) + 1) * 3*width + x_place + width_offset + 0] = 255;
-            rgb_image[((y_place + height_small) + 1) * 3*width + x_place + width_offset + 1] = 0;
-            rgb_image[((y_place + height_small) + 1) * 3*width + x_place + width_offset + 2] = 0;  
+        rgb_image[((y_place + height_small) + 1) * 3*width + x_place + width_offset + 0] = 255;
+        rgb_image[((y_place + height_small) + 1) * 3*width + x_place + width_offset + 1] = 0;
+        rgb_image[((y_place + height_small) + 1) * 3*width + x_place + width_offset + 2] = 0;
+    }
+    for (int height_offset = 0; height_offset < height_small + 3; height_offset++) {
+        // Left line
+        rgb_image[(y_place + height_offset - 1) * 3*width + x_place - 3] = 255;
+        rgb_image[(y_place + height_offset - 1) * 3*width + x_place - 2] = 0;
+        rgb_image[(y_place + height_offset - 1) * 3*width + x_place - 1] = 0;
+        rgb_image[(y_place + height_offset - 1) * 3*width + x_place] = 255;
+        rgb_image[(y_place + height_offset - 1) * 3*width + x_place + 1] = 0;
+        rgb_image[(y_place + height_offset - 1) * 3*width + x_place + 2] = 0;
+        rgb_image[(y_place + height_offset - 1) * 3*width + x_place + 3] = 255;
+        rgb_image[(y_place + height_offset - 1) * 3*width + x_place + 4] = 0;
+        rgb_image[(y_place + height_offset - 1) * 3*width + x_place + 5] = 0;            
 
-            // Left line
-            rgb_image[(y_place + height_offset - 1) * 3*width + x_place - 3] = 255;
-            rgb_image[(y_place + height_offset - 1) * 3*width + x_place - 2] = 0;
-            rgb_image[(y_place + height_offset - 1) * 3*width + x_place - 1] = 0;
-            rgb_image[(y_place + height_offset - 1) * 3*width + x_place] = 255;
-            rgb_image[(y_place + height_offset - 1) * 3*width + x_place + 1] = 0;
-            rgb_image[(y_place + height_offset - 1) * 3*width + x_place + 2] = 0;
-            rgb_image[(y_place + height_offset - 1) * 3*width + x_place + 3] = 255;
-            rgb_image[(y_place + height_offset - 1) * 3*width + x_place + 4] = 0;
-            rgb_image[(y_place + height_offset - 1) * 3*width + x_place + 5] = 0;            
-
-            // Right line
-            rgb_image[(y_place + height_offset - 1) * 3*width + x_place + 3*width_small - 3] = 255;
-            rgb_image[(y_place + height_offset - 1) * 3*width + x_place + 3*width_small - 2] = 0;
-            rgb_image[(y_place + height_offset - 1) * 3*width + x_place + 3*width_small - 1] = 0;
-            rgb_image[(y_place + height_offset - 1) * 3*width + x_place + 3*width_small] = 255;
-            rgb_image[(y_place + height_offset - 1) * 3*width + x_place + 3*width_small + 1] = 0;
-            rgb_image[(y_place + height_offset - 1) * 3*width + x_place + 3*width_small + 2] = 0;
-            rgb_image[(y_place + height_offset - 1) * 3*width + x_place + 3*width_small + 3] = 255;
-            rgb_image[(y_place + height_offset - 1) * 3*width + x_place + 3*width_small + 4] = 0;
-            rgb_image[(y_place + height_offset - 1) * 3*width + x_place + 3*width_small + 5] = 0;                                             
-        }
+        // Right line
+        rgb_image[(y_place + height_offset - 1) * 3*width + x_place + 3*width_small - 3] = 255;
+        rgb_image[(y_place + height_offset - 1) * 3*width + x_place + 3*width_small - 2] = 0;
+        rgb_image[(y_place + height_offset - 1) * 3*width + x_place + 3*width_small - 1] = 0;
+        rgb_image[(y_place + height_offset - 1) * 3*width + x_place + 3*width_small] = 255;
+        rgb_image[(y_place + height_offset - 1) * 3*width + x_place + 3*width_small + 1] = 0;
+        rgb_image[(y_place + height_offset - 1) * 3*width + x_place + 3*width_small + 2] = 0;
+        rgb_image[(y_place + height_offset - 1) * 3*width + x_place + 3*width_small + 3] = 255;
+        rgb_image[(y_place + height_offset - 1) * 3*width + x_place + 3*width_small + 4] = 0;
+        rgb_image[(y_place + height_offset - 1) * 3*width + x_place + 3*width_small + 5] = 0;
     }
 
     stbi_write_png("office_out.png" , width, height, 3, rgb_image, width*3);
