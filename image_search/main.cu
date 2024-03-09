@@ -98,7 +98,7 @@ int main() {
             y_place = i / (3*width);
         }
     }
-    std::cout << "\ncorr: " << corr << std::endl;
+    std::cout << "corr: " << corr << std::endl;
     std::cout << "x_place: " << x_place / 3 << std::endl;
     std::cout << "y_place: " << y_place << std::endl;
 
@@ -157,7 +157,7 @@ int main() {
         rgb_image[(y_place + height_offset - 1) * 3*width + x_place + 3*width_small + 5] = 0;
     }
 
-    stbi_write_png("out.png" , width, height, 3, rgb_image, width*3);
+    stbi_write_png("office_out.png" , width, height, 3, rgb_image, width*3);
 
     stbi_image_free(rgb_image);
     stbi_image_free(rgb_image_small);
