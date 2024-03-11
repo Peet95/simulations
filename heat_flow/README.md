@@ -6,10 +6,6 @@ The initial condition is linear in both Cartesian coordinates along the sheet, w
 
 The program draws the simulation in real-time using the Gnuplot graphical tool. 
 
-
-
-
-Figures \ref{first} and \ref{second} show the outcome of a simulation at different time points.
 # The heat conduction equation
 The observable fact in nature that heat flows from warmer areas to cooler ones can be expressed with the following mathematical equation:
 ```math
@@ -47,7 +43,7 @@ T_{i+1,j}^{n-1} = T_{i,j}^{n-1} + \Delta x \frac{\partial T}{\partial x} \Big\ve
 ```math
 T_{i-1,j}^{n-1} = T_{i,j}^{n-1} - \Delta x \frac{\partial T}{\partial x} \Big\vert_{i,j}^{n-1} + \frac{\Delta x^2}{2!} \frac{\partial ^2 T}{\partial x^2} \Big\vert_{i,j}^{n-1}. \tag*{(7)}
 ```
-By adding equations the last two equations, and expressing the second derivative:
+By adding equations (6) and (7) and expressing the second derivative:
 ```math
  \frac{\partial ^2 T}{\partial x^2} \Big\vert_{i,j}^{n-1} = \frac{T_{i+1,j}^{n-1} + T_{i-1,j}^{n-1} - 2 T_{i,j}^{n-1}  }{\Delta x^2}. \tag*{(8)}
 ```
@@ -85,7 +81,7 @@ So that $|\xi (k)| < 1$ holds for all $k$:
 ```math
 \eta = \frac{\kappa \Delta t}{C \rho \Delta x^2} < \frac{1}{2}. \tag*{(15)}
 ```
-Based on this equation, choosing smaller time steps $\Delta t$ leads to a more stable solution. However, if we decrease the spatial step size $\Delta x$ without quadratically adjusting the time step in proportion, the stability will decrease. We could perform this calculation considering only $\Delta x$ because in the simulation, we use the same step size in both spatial directions. This is not ideal for highly elongated rectangles, but it greatly simplifies the computation and the simulation.
+Based on equation (15) choosing smaller time steps $\Delta t$ leads to a more stable solution. However, if we decrease the spatial step size $\Delta x$ without quadratically adjusting the time step in proportion, the stability will decrease. We could perform this calculation considering only $\Delta x$ because in the simulation, we use the same step size in both spatial directions. This is not ideal for highly elongated rectangles, but it greatly simplifies the computation and the simulation.
 
 # Example run
 
