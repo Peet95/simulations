@@ -1,61 +1,78 @@
 #include <iostream>
 #include <vector>
 #include <fstream>
-#include <math.h>
+#include <cmath>
 
-int main() 
-{
-  std::ofstream myfile;
-  myfile.open ("data.txt");
+// Constants
+const int kGridSize = 101;
+const int kOutputSize = 100;
+const double kTension = 40.0;
+const double kDensity = 0.01;
+const double kEndTime = 80.0;
+const double kTimeStep = 1.0;
+const double kInitialDisturbance = 0.00125;
+const double kDisturbanceDecline = 0.005;
+const double kScaleFactor = 300.0;
 
-  // Parameters
-  double t = 0.0;
-  double rho   = 0.01;                                              
-  double ten   = 40.0;                                             
-  double c     = sqrt(ten/rho);                                  
-  double c1    = c; // CFL criterium
-  double ratio =  c*c/(c1*c1);
+double calculate_wave_speed(double tension, double density) {
+    return std::sqrt(tension / density);
+}
 
-  // Initialization
-  std::vector<std::vector<double>>  xi(101, std::vector<double>(3, 0));
-  std::vector<double> xa(100), ya(100);
-
-  for(int i = 0; i < 81; i++) {
-    xi[i][0] = 0.00125*i; 
-  }        
-  for(int i = 81; i < 101; i++) {
-    xi[i][0] = 0.1 - 0.005*(i - 80);
-  }        
-  for(int i = 0; i < 100; i++) {
-    xa[i] = 2.0*i - 100.0;                            
-    ya[i] = 300.0*xi[i][0];  
-    myfile << t << " " << xa[i] << " " << ya[i] << std::endl;  
-  }
-
-  // Later time steps
-  for(int i = 1; i < 99; i++) {
-    xi[i][1] = xi[i][0] + 0.5*ratio*(xi[i+1][0] + xi[i-1][0] - 2.0*xi[i][0]);
-  }
-  while (t < 80.0){
-    for(int i = 1; i < 100; i++) {
-      xi[i][2] = 2.0*xi[i][1] - xi[i][0] + ratio*(xi[i+1][1] + xi[i-1][1] - 2.0*xi[i][1]);
-
+void initialize_grid(std::vector<std::vector<double>>& xi) {
+    for (int i = 0; i < 81; ++i) {
+        xi[i][0] = kInitialDisturbance * i;
     }
-      
-    for(int i = 1; i < 100; i++) {
-      xa[i] = 2.0*i - 100.0;                  
-      ya[i] = 300.0*xi[i][2];
-      myfile << t << " " << xa[i] << " " << ya[i] << std::endl; 
+    for (int i = 81; i < kGridSize; ++i) {
+        xi[i][0] = 0.1 - kDisturbanceDecline * (i - 80);
     }
-    
-   
-    for(int i = 0; i < 101; i++) {
-      xi[i][0] = xi[i][1];                              
-      xi[i][1] = xi[i][2];
+}
+
+void update_grid(std::vector<std::vector<double>>& xi, double ratio) {
+    for (int i = 1; i < kOutputSize - 1; ++i) {
+        xi[i][1] = xi[i][0] + 0.5 * ratio * (xi[i + 1][0] + xi[i - 1][0] - 2.0 * xi[i][0]);
     }
-    
-    t=t+1.0;
-  }                                                               
-  myfile.close();
-  return 0;
+    for (int i = 1; i < kOutputSize; ++i) {
+        xi[i][2] = 2.0 * xi[i][1] - xi[i][0] + ratio * (xi[i + 1][1] + xi[i - 1][1] - 2.0 * xi[i][1]);
+    }
+}
+
+void write_data(std::ofstream& myfile, const std::vector<std::vector<double>>& xi, double t) {
+    for (int i = 0; i < kOutputSize; ++i) {
+        double xa = 2.0 * i - kOutputSize;
+        double ya = kScaleFactor * xi[i][2];
+        myfile << t << " " << xa << " " << ya << std::endl;
+    }
+}
+
+int main() {
+    std::ofstream myfile("data.txt");
+
+    double t = 0.0;
+    double wave_speed = calculate_wave_speed(kTension, kDensity);
+    double ratio = wave_speed * wave_speed / (wave_speed * wave_speed);
+
+    // Initialize grid
+    std::vector<std::vector<double>> xi(kGridSize, std::vector<double>(3, 0.0));
+    initialize_grid(xi);
+
+    // Write initial state
+    write_data(myfile, xi, t);
+
+    // Time loop
+    while (t < kEndTime) {
+        update_grid(xi, ratio);
+        write_data(myfile, xi, t);
+
+        // Update time
+        t += kTimeStep;
+
+        // Advance state
+        for (int i = 0; i < kGridSize; ++i) {
+            xi[i][0] = xi[i][1];
+            xi[i][1] = xi[i][2];
+        }
+    }
+
+    myfile.close();
+    return 0;
 }
