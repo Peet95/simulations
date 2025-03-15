@@ -22,7 +22,7 @@ const double l1 = 1.0; //Length of first rod
 const double l2 = 1.0; //Length of second rod
 const double m1 = 1.0; //Mass of first ball
 const double m2 = 1.0; //Mass of second ball
-const double M = m1+ m2; 
+const double M = m1 + m2; 
 const double g = 0.0;
 const double eta = 0.0; //Drag coefficient
 
